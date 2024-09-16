@@ -102,7 +102,7 @@ use `docker compose up [-d]` or leverage podman dedicated command (to be provide
 
 Navigate to the Kibana console.
 Navigate to Search > Content > Indices.
-Open the `pididxtxt` index.
+Open the `marekidxtxt` index.
 Open the Documents tab to see the data for verification.
 
 
@@ -112,7 +112,7 @@ Create a destination index using the same schema as the source index. Add a fiel
 
 Enter the following code, then hit the run icon.
 ```
-    PUT /pididx-dest
+    PUT /marekidx-dest
     {
     "mappings": {
         "properties": {
@@ -144,7 +144,7 @@ Enter the following code, then hit the run icon.
 Create an ingest pipeline with an inference processor. Enter the following code:
 
 ```
-    PUT _ingest/pipeline/pid-embedding-pipeline
+    PUT _ingest/pipeline/marek-embedding-pipeline
     {
     "processors": [
         {
@@ -170,12 +170,12 @@ Ingest the data through the inference index pipeline to create the text embeddin
     POST _reindex?wait_for_completion=false
     {
     "source": {
-        "index": "pididxtxt",
+        "index": "marekidxtxt",
         "size": 50 
     },
     "dest": {
-        "index": "pididx-dest",
-        "pipeline": "pid-embedding-pipeline"
+        "index": "marekidx-dest",
+        "pipeline": "marek-embedding-pipeline"
     }
     }
 ```
@@ -188,13 +188,13 @@ To confirm the task was run successfully, run the following command using the ta
 Verify the content embeddings are in the new destination index.
 Navigate to Kibana.
 Navigate to Search > Content > Indices.
-Open the pididx-dest index.
+Open the marekidx-dest index.
 Open the Documents tab to see the data. It should show text chunks and sparce embeddings (vectors)
 
 ## deleting resources after using
 
 as previously created - now you can delete the pipeline
-`DELETE _ingest/pipeline/pid-embedding-pipeline`
+`DELETE _ingest/pipeline/marek-embedding-pipeline`
 
 And using the interface for indices you might be able to delete a folder, txt based index, and the sparce vector index.
 
