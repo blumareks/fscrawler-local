@@ -47,7 +47,7 @@ elasticsearch:
 
 - in the root folder
  - add files in folders to get ingested, for example: 
-   -  `/marekidxtxt-data` - as a folder with P&ID data: pdfs, docs, scans, etc
+   -  `/marekidxtxt-data` - as a folder with your data: pdfs, docs, scans, etc
  - create `.env` file - create the file using something similar to the following:
 
 ```sh
