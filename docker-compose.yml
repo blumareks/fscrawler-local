@@ -1,0 +1,15 @@
+---
+version: "2.2"
+
+services:
+  fscrawler:
+      image: dadoonet/fscrawler:${FSCRAWLER_VERSION}
+      container_name: fscrawler_pid
+      restart: always
+      volumes:
+        - ${DOCUMENTS_DIRECTORY}:/tmp/es:ro
+        - D:\marek\tst\config:/root/.fscrawler
+        - D:\marek\tst\logs:/usr/share/fscrawler/logs
+      ports:
+        - ${FSCRAWLER_PORT}:8080
+      command: fscrawler marekidxtxt --restart --rest
