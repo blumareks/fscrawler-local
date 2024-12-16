@@ -80,6 +80,20 @@ services:
       command: fscrawler marekidxtxt --restart --rest
 ```
 
+## podman instead of docker-compose:
+
+```sh
+podman run \
+  --name fscrawler_pid \
+  --restart always \
+  -v ${DOCUMENTS_DIRECTORY}:/tmp/es:ro \
+  -v D:\marek\fscrawler-docker-config\config:/root/.fscrawler \
+  -v D:\marek\fscrawler-docker-config\logs:/usr/share/fscrawler/logs \
+  -p ${FSCRAWLER_PORT}:8080 \
+  dadoonet/fscrawler:${FSCRAWLER_VERSION} \
+  fscrawler marekidxtxt --restart --rest
+```
+
 ### on windows machine:
 the correct path to `config` and `logs` can be obtained in the following way:
 ```
